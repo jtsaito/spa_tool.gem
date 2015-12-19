@@ -10,21 +10,22 @@ OUTPUT_PATH = './public'
 DYNAMO_DB_NAME='travis-ci-example-with-filter'
 DYNAMO_DB_REGION='eu-west-1'
 
+# make available rake tasks asset build, clean and clobber
+# in global rake task name space
+Rake::SprocketsTask.new do |t|
+  t.environment = Sprockets::Environment.new
+  t.output      = [OUTPUT_PATH, ASSET_INPUT_PATH].join('/')
+  t.assets      = MANIFEST_FILES
+
+  t.environment.append_path ASSET_INPUT_PATH
+end
+
 namespace :spa_tools do
   def artifact_names
     Pathname.new('public/assets/javascripts')
       .children
       .select { |p| p.file? }
       .map { |p| p.split.last.to_s }
-  end
-
-  # make available rake tasks asset build, clean and clobber.
-  Rake::SprocketsTask.new do |t|
-    t.environment = Sprockets::Environment.new
-    t.output      = [OUTPUT_PATH, ASSET_INPUT_PATH].join('/')
-    t.assets      = MANIFEST_FILES
-
-    t.environment.append_path ASSET_INPUT_PATH
   end
 
   desc "Compile assets"
@@ -47,10 +48,6 @@ namespace :spa_tools do
     time = DynamoManifestList.new(DYNAMO_DB_NAME, DYNAMO_DB_REGION).get_latest_created_at
     p time
     time
-  end
-
-  task :testo do
-    puts "testo"
   end
 
   desc "By default, run rake test"
