@@ -16,3 +16,12 @@ dropping the `targe_paths` this defaults to `$GITHUB_NAME$REPOSITORY_NAME$TRAVIS
 
 ## Resources
 [Helpful linter for writing the `travis.yml`](https://lint.travis-ci.org/)
+
+## How to run the rake tasks
+In your local `Rakefile` include the following lines to make the rake
+tasks available.
+
+```ruby
+spec = Gem::Specification.find_by_name 'spa_tool'
+Dir.glob(File.join("#{spec.gem_dir}/lib/tasks/**/*.rake")).each { |file| load file }
+```
