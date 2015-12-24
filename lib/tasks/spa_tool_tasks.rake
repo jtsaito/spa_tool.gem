@@ -28,8 +28,8 @@ namespace :spa_tools do
       .map { |p| p.split.last.to_s }
   end
 
-  desc "Compile assets"
-  task :compile_assets do
+  desc "Compile assets from input repo directory save in output directory"
+  task :compiledo
     Rake::Task["assets"].invoke("assets")
   end
 
