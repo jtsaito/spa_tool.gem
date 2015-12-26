@@ -43,7 +43,7 @@ namespace :spa_tool do
   desc "Get created_at of the latest file names"
   task :get_latest_created_at do
     time = DynamoManifestList.new(SpaTool.DYNAMO_DB_NAME, SpaTool.DYNAMO_DB_REGION).get_latest_created_at
-    p time
+    p Time.at(time.to_i)
     time
   end
 
