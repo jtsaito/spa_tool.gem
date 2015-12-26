@@ -17,7 +17,7 @@ Rake::SprocketsTask.new do |t|
   t.environment.append_path SpaTool.ASSET_INPUT_PATH
 end
 
-namespace :spa_tools do
+namespace :spa_tool do
   def artifact_names
     Pathname.new('public/assets/javascripts')
       .children
@@ -25,7 +25,7 @@ namespace :spa_tools do
       .map { |p| p.split.last.to_s }
   end
 
-  desc "Compile assets from input repo directory save in output directory"
+  desc "Compile assets from input directory and save them in the output directory"
   task :compile do
     Rake::Task["assets"].invoke("assets")
   end
