@@ -25,9 +25,9 @@ module SpaTool
     begin
       config = YAML::load(IO.read(path_to_yaml_file))
     rescue Errno::ENOENT
-      stderr.puts(:warning, "YAML configuration file couldn't be found. Using defaults."); return
+      $stderr.puts(:warning, "YAML configuration file couldn't be found. Using defaults."); return
     rescue Psych::SyntaxError
-      stderr.puts(:warning, "YAML configuration file contains invalid syntax. Using defaults."); return
+      $stderr.puts(:warning, "YAML configuration file contains invalid syntax. Using defaults."); return
     end
 
     configure(config)
