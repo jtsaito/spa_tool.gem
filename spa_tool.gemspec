@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'coffee-script', '~> 2.4'
   spec.add_dependency 'bundler', '~> 1.10'
   spec.add_dependency 'aws-sdk', '~> 2.2'
+  spec.add_dependency 'sass'
 
   spec.add_development_dependency 'pry-byebug', '~> 3.3'
   spec.add_development_dependency 'rspec', '~> 3.3'
