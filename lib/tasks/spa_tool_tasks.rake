@@ -11,10 +11,10 @@ require "#{gem_spec.gem_dir}/lib/rake/sprocketstask"
 # in global rake task name space
 Rake::SprocketsTask.new do |t|
   t.environment = Sprockets::Environment.new
-  t.output      = [SpaTool.OUTPUT_PATH, SpaTool.ASSET_INPUT_PATH].join('/')
+  t.output      = SpaTool.OUTPUT_PATH
   t.assets      = SpaTool.MANIFEST_FILES
 
-  t.environment.append_path SpaTool.ASSET_INPUT_PATH
+  SpaTool.ASSET_INPUT_PATHS.each { |p| t.environment.append_path(p) }
 end
 
 namespace :spa_tool do

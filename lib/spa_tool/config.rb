@@ -7,7 +7,7 @@ module SpaTool
   @config =
     {
       MANIFEST_FILES: %w( javascripts/application.js stylesheets/application.css ),
-      ASSET_INPUT_PATH: 'assets',
+      ASSET_INPUT_PATHS: %w( assets ),
       OUTPUT_PATH: './public',
       DYNAMO_DB_NAME: 'travis-ci-example-with-filter',
       DYNAMO_DB_REGION: 'eu-west-1'
